@@ -1,0 +1,67 @@
+doctype html
+html
+	head
+		link(rel="icon", href="static/img/favicon.png", type="image/png")
+		meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+		link(rel="stylesheet", href="css/fonts.css")
+		link(rel="stylesheet", href="css/style.css")
+		script(src="https://kit.fontawesome.com/a81368914c.js")
+		title Product Card
+	body
+		- var colors = ['blue','red','green','orange','black']
+		- var selectedColor = 'blue'
+		- var selectedSize = 9
+		- var primaries = { 'blue': '#2175f5','red': '#f84848', 'green': '#29b864', 'orange': '#ff5521', 'black': '#444'}
+		.container
+			.card
+				.shoe-background
+					.gradients
+						each val in colors
+							if(val==selectedColor)
+								.gradient.second(color=val)
+							else
+								.gradient(color=val)
+					h1.nike nike
+					img.logo(src="static/img/logo.png", alt="")
+					a.share(href="#")
+						i.fas.fa-share-alt
+					each val in colors
+						if(val==selectedColor)
+							img.shoe.shoe-selected(src="static/img/"+val+".png" color=val alt="")
+						else
+							img.shoe(src="static/img/"+val+".png" color=val alt="")
+
+				.info
+					.shoe-name
+						.shoe-model
+							h1.big Nike Zoom KD 12
+							span.new new
+						h3.small Men's running shoes
+					.description
+						h3.title Product Info
+						p.text Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet, perspiciatis qui eaque id quae iure inventore soluta eius iste possimus!
+					.color-container
+						h3.title Color
+						.colors
+							each val in colors
+								if(val==selectedColor)
+									span.color.color-active(color=val primary=primaries[val])
+								else
+									span.color(color=val primary=primaries[val])
+					.size-container
+						h3.title size
+						.sizes
+							each val in [7,8,9,10,11]
+								if(val==selectedSize)
+									span.size.active=val
+								else
+									span.size=val
+					.buy-price
+						a.buy(href="#") Add to card
+							i.fas.fa-shopping-cart
+						.price
+							i.fas.fa-dollar-sign
+							h1 189.99
+
+		script(src="js/index.js")
+		

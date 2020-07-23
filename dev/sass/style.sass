@@ -1,0 +1,323 @@
+@import 'modules/_vars'
+@import 'modules/_normalize'
+@import 'modules/_vars_color'
+
+
+=linear-color($from, $to)
+  background-image: linear-gradient(45deg, $from, $to)
+
+*
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  //font-family: 'Poppins', sans-serif
+
+$primary: var(--color-primary)
+
+.container
+  background-color: #efefef
+  // на всю высоту страницы
+  min-height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 40px
+  overflow: hidden
+
+.card
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 860px
+
+.shoe
+  position: absolute
+  z-index: 2
+  width: 130%
+  bottom: 0
+  right: 0
+  opacity: 0
+  transition: 1s
+  transform: rotate(-20deg)
+  &-selected
+    opacity: 1
+
+  &-background
+    position: relative
+    width: 50%
+    height: 475px
+    box-shadow: -15px 0 35px rgba(0,0,0,0.1),
+    0 -15px 35px rgba(0,0,0,0.1),
+    0 15px 35px rgba(0,0,0,0.1)
+    transition: .5s
+
+  &-name
+    padding: 0 0 10px 0
+    .small
+      font-weight: 500
+      color: #444
+      margin-top: 3px
+      text-transform: capitalize
+  &-model
+    display: flex
+    align-items: center
+    .big
+      margin-right: 10px
+      font-size: 2rem
+      color: #333
+      line-height: 1
+    .new
+      background-color: $primary
+      text-transform: uppercase
+      color: #fff
+      padding: 3px 10px
+      border-radius: 5px
+
+.gradients
+  position: absolute
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+
+.gradient
+  position: absolute
+  width: 100%
+  height: 100% 
+  left: 0
+  top: 0
+  z-index: -2
+  background-color: #0ea7a7
+  &[color="blue"]
+    +linear-color(#0136af,#22abfa)
+  &[color="red"]
+    +linear-color(#d62926,#ee625f)
+  &[color="green"]
+    +linear-color(#11998e,#1ce669)
+  &[color="orange"]
+    +linear-color(#fc4a1a,#f7b733)
+  &[color="black"]
+    +linear-color(#111,#666)
+
+.first
+  z-index: 1
+  animation: 1s width ease
+
+
+
+@keyframes width
+  from
+    width: 0%
+  to
+    width: 100%
+
+.second
+  z-index: 0
+
+.logo
+  position: absolute
+  z-index: 2
+  width: 100px
+  left: 20px
+  top: 20px
+
+.share
+  position: absolute
+  z-index: 2
+  top: 15px
+  right: 15px
+  background-color: #fff
+  width: 50px
+  height: 50px
+  border-radius: 50%
+  text-align: center
+  font-size: 1.3rem
+  text-decoration: none
+  color: $primary
+  transition: .5s
+  &:hover
+    transform: scale(1.1)
+  & i
+    line-height: 50px
+
+.nike
+  position: absolute
+  z-index: 1
+  bottom: -20px
+  right: 15px
+  font-size: 5rem
+  text-transform: uppercase
+  line-height: 1
+  color: #fff
+  transform: rotate(-20deg)
+  opacity: .1
+
+.info
+  width: 50%
+  background-color: #fff
+  z-index: 1
+  padding: 35px 40px
+  box-shadow: 15px 0 35px rgba(0,0,0,0.1),
+  0 -15px 35px rgba(0,0,0,0.1),
+  0 15px 35px rgba(0,0,0,0.1)
+  > div:not(:last-child)
+    border-bottom: 1px solid #dadada
+    padding: 10px 0
+
+.title
+  color: #3a3a3a
+  font-weight: 600
+  font-size: 1.2rem
+  text-transform: uppercase
+
+.text
+  color: #555
+  font-size: 17px
+
+.colors
+  padding: 8px 0
+  display: flex
+  align-items: center
+
+$color-circles: ( blue: #2175f5,red: #f84848, green: #29b864, orange: #ff5521, black: #444)
+$some: (first: #000, second: #333)
+
+.color
+  width: 25px
+  height: 25px
+  border-radius: 50%
+  margin: 0 10px
+  background-color: #000
+  border: 5px solid #000
+  cursor: pointer
+  transition: .5s
+
+  @each $color,$circle in $color-circles
+    &[color=#{$color}]
+      background-color: $circle
+      border-color: $circle
+
+  &.color-active
+    border-color: #fff
+    box-shadow: 0 0 10px .5px rgba(0,0,0,0.2)
+    transform: scale(1.1)
+
+.size-container
+  margin-bottom: 10px
+
+.sizes
+  padding: 8px 0
+  display: flex
+  align-items: center
+
+.size
+  width: 40px
+  height: 40px
+  border-radius: 6px
+  background-color: #eee
+  margin: 0 10px
+  text-align: center
+  line-height: 40px
+  font-size: 1.1rem
+  font-weight: 500
+  user-select: none
+  cursor: pointer
+  transition: .3s
+  &.active
+    background-color: $primary
+    color: #fff
+
+.buy
+
+  &-price
+    padding-top: 15px
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.buy
+  padding: .7rem 1rem
+  background-color: $primary
+  text-decoration: none
+  color: #fff
+  text-transform: uppercase
+  letter-spacing: 1px
+  font-weight: 500
+  font-size: 1.1rem
+  transition: .3s
+  &:hover
+    transform: scale(1.1)
+  &:active
+    background-color: #eee
+    color: $primary
+
+.price
+  color: #333
+  display: flex
+  align-items: flex-start
+  justify-content: center
+  h1
+    font-size: 2.1rem
+    font-weight: 600
+    line-height: 1
+    margin: 0
+  i
+    font-size: 1.4rem
+    margin-right: 1px
+
+@media (max-width: 1070px)
+  .shoe
+    width: 135%
+
+@media (max-width: 1000px)
+  .card
+    flex-direction: column
+    width: 100%
+    box-shadow: 0 0 35px 1px rgba(0,0,0,0.2)
+    & > div
+      width: 100%
+      box-shadow: none
+
+  .shoe
+    width: 100%
+    transform: rotate(-5deg) translateY(-50%)
+    top: 55%
+    right: 2%
+
+  .nike
+    top: -12%
+    left: 20%
+    font-size: 6rem
+
+@media (max-width: 600px)
+  .container
+    padding: 20px
+    
+  .card
+    box-shadow: none
+
+  .info
+    border-radius: 0 0 15px 15px
+  .gradient
+    border-radius: 15px 15px 0 0
+
+  .shoe
+    &-background
+      height: 250px
+    &-model
+      align-items: flex-start
+
+  .share
+    width: 40px
+    height: 40px
+    i
+      font-size: 1rem
+      line-height: 40px
+
+  .logo
+    width: 70px
+
+  .buy-price
+    flex-direction: column-reverse
+    & > *
+      margin: 15px 0
